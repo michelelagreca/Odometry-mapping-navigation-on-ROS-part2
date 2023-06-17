@@ -9,6 +9,7 @@ project(second_project)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
   roscpp
+  tf
 )
 
 ## System dependencies are found with CMake's conventions
@@ -147,6 +148,9 @@ include_directories(
 # target_link_libraries(${PROJECT_NAME}_node
 #   ${catkin_LIBRARIES}
 # )
+
+add_executable(tf_publisher src/tf_publisher.cpp)
+target_link_libraries(tf_publisher ${catkin_LIBRARIES})
 
 #############
 ## Install ##
