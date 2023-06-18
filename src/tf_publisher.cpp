@@ -16,7 +16,7 @@ class tf_publisher{
     tf::Quaternion q;
     tf::quaternionMsgToTF(msg.pose.pose.orientation, q);    
     transform.setRotation(q);
-    br.sendTransform(tf::StampedTransform(transform, ros::Time::now(), "world", "t265"));
+    br.sendTransform(tf::StampedTransform(transform, ros::Time::now(), "odom", "base_link"));
   }
 
 
