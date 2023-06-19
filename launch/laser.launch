@@ -1,0 +1,17 @@
+<launch>
+  <param name="/use_sim_time" value="true"/>
+  <node pkg="second_project" type = "tf_publisher" name = "tf_publisher"/>
+  <node pkg="tf" type="static_transform_publisher" name="base_footprint_tf" args="0 0 0 0 0 0 1 t265 base_footprint 100" />
+  <node pkg="tf" type="static_transform_publisher" name="velodyne_tf" args="0 0 0 0 0 0 1 t265 velodyne 100" />
+  <node pkg="tf" type="static_transform_publisher" name="laser_tf" args="0 0 0 0 0 0 1 t265 laser 100" />
+  
+  <!-- Slam toolbox-->
+  <node pkg="slam_toolbox" type="async_slam_toolbox_node" name="slam_toolbox" output="screen">
+    <rosparam command="load" file="$(find second_project)/cfg/st_config_laser.yaml" />
+  </node>
+
+  <!--  rviz  -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find second_project)/config_mapping.rviz"/>
+
+</launch>
+
