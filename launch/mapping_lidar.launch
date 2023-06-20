@@ -1,9 +1,10 @@
 <launch>
   <param name="/use_sim_time" value="true"/>
   <node pkg="second_project" type = "tf_publisher" name = "tf_publisher"/>
-  <node pkg="tf2_ros" type="static_transform_publisher" name="base_footprint_tf" args="0 0 0 0 0 0 1 t265 base_footprint" />
-  <node pkg="tf2_ros" type="static_transform_publisher" name="velodyne_tf" args="0 0 0 0 0 0 1 t265 velodyne" />
-  <node pkg="tf2_ros" type="static_transform_publisher" name="laser_tf" args="0 0 0 0 0 0 1 t265 laser" />
+  <node pkg="tf2_ros" type="static_transform_publisher" name="base_footprint_tf" args="-0.25 0 -0.29 0 0.04348628248541267 0 0.999054024182676 t265 base_footprint" />
+  <node pkg="tf2_ros" type="static_transform_publisher" name="base_link_tf" args="0 0 0.20950000000000002 0 0 0 1 base_footprint base_link" />
+  <node pkg="tf2_ros" type="static_transform_publisher" name="velodyne_tf" args="0.18 0 0.17 0 -0.04348628248541267 0 0.999054024182676 base_link velodyne" />
+  <node pkg="tf2_ros" type="static_transform_publisher" name="laser_tf" args="0.18 0 0.04 0 -0.04348628248541267 0 0.999054024182676 base_link laser" />
 
   <!-- Conversion 3D LIDAR in laser-->
   <node pkg="pointcloud_to_laserscan" type="pointcloud_to_laserscan_node" name="pointcloud_to_laserscan" output="screen">
