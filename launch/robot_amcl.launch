@@ -72,6 +72,9 @@ kobuki_hexagons_kinect kobuki_hexagons_r200 roomba_circles_asus_xtion_pro roomba
 
   <!--  **************** Precomputed navigation from CSV ****************  -->
   <node name="navigation" pkg="second_project" type="navigation"  output ="screen"/>
+  <param name="csv_path" type="string" value="$(find second_project)/waypoints.csv" />
+
+
 
 
 </launch>

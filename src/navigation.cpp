@@ -8,14 +8,11 @@
 #include <string>
 #include <tf2/LinearMath/Quaternion.h>
 
-
-int main (int argc, char **argv)
-{ 
-	ros::init(argc, argv, "navigation");
-	std::ifstream file("/home/michelelagreca/Documents/Robotics/ROS/src/second_project/waypoints.csv");
+std::vector<std::array<float, 3>> read_csv(const std::string& path) {
+    std::ifstream file(path);
     if (!file) {
         std::cout << "Error opening file!" << std::endl;
-        return 1;
+        return {};
     }
 
     std::vector<std::array<float, 3>> data;
@@ -26,25 +23,34 @@ int main (int argc, char **argv)
         char delimiter;
         if (!(iss >> values[0] >> delimiter >> values[1] >> delimiter >> values[2])) {
             std::cout << "Error: Invalid line format!" << std::endl;
-            return 1;
+            return {};
         }
         if (delimiter != ',') {
             std::cout << "Error: Invalid delimiter!" << std::endl;
-            return 1;
+            return {};
         }
         data.push_back(values);
     }
+    return data;
+}
 
-    // Print the contents of the array
-    for (const auto& item : data) {
-        for (const auto& value : item) {
-            std::cout << value << " ";
-        }
-        std::cout << std::endl;
+int main (int argc, char **argv)
+{ 
+	ros::init(argc, argv, "navigation");
+
+    ros::NodeHandle n;
+    std::string path;
+    n.getParam("/csv_path", path);
+    
+    std::vector<std::array<float, 3>> data = read_csv(path);
+
+    if (data.empty()) {
+        std::cout << "Error reading file or empty data!" << std::endl;
+        return 1;
     }
 
+
     ROS_INFO("SIMPLE ACTION CLIENT ------> Waiting for the move_base action server to come up"); 
-    
     
     
     // create the action client
