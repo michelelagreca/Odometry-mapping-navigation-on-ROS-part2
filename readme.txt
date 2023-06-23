@@ -56,6 +56,9 @@ Finally, for the navigation using point in csv file, the action mechanism has be
 The navigation.cpp contain a node that is a simple action client, that send a goal to the move_base node (a server action).
 Then move_base move the robot, and when the goal is reached (in reasonable time), the result is sent to the client, and it send the next goal.
 
+To run the navigation part:
+    roslaunch second_project robot_amcl.launch
+
 
 
 

@@ -11,7 +11,10 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   tf
   move_base_msgs 
+  move_base
   actionlib
+  std_msgs
+  actionlib_msgs
 )
 
 ## System dependencies are found with CMake's conventions
@@ -69,10 +72,12 @@ find_package(catkin REQUIRED COMPONENTS
 # )
 
 ## Generate added messages and services with any dependencies listed here
-# generate_messages(
-#   DEPENDENCIES
-#   std_msgs  # Or other packages containing msgs
-# )
+generate_messages(
+  DEPENDENCIES
+  std_msgs  # Or other packages containing msgs
+  actionlib_msgs
+  move_base_msgs
+)
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
