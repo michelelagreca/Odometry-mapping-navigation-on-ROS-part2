@@ -69,4 +69,9 @@ kobuki_hexagons_kinect kobuki_hexagons_r200 roomba_circles_asus_xtion_pro roomba
 
   <!--  **************** Visualisation ****************  -->
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(find second_project)/config_navigation.rviz"/>
+
+  <!--  **************** Precomputed navigation from CSV ****************  -->
+  <node name="navigation" pkg="second_project" type="navigation"  output ="screen"/>
+
+
 </launch>

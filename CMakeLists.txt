@@ -10,6 +10,8 @@ project(second_project)
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   tf
+  move_base_msgs 
+  actionlib
 )
 
 ## System dependencies are found with CMake's conventions
@@ -151,6 +153,9 @@ include_directories(
 
 add_executable(tf_publisher src/tf_publisher.cpp)
 target_link_libraries(tf_publisher ${catkin_LIBRARIES})
+
+add_executable(navigation src/navigation.cpp)
+target_link_libraries(navigation ${catkin_LIBRARIES})
 
 #############
 ## Install ##
