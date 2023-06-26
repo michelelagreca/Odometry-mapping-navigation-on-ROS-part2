@@ -46,6 +46,14 @@ it may not be enough for this task.
 In general, the infaltion radius is 0.2, and it is a good value for this type of robot and map, because it allow 
 the robot to navigate easly in the map but also tu avoid going to very narrow places where it can stuck.
 
+We have tried other values that are smaller in order to let the robot go also in narrow part of the map (like the right part) but
+the robot was stacking easly in some points, also due to the map that we basically didn't postprocess at all (with a post processed map it could be possible to eliminate
+critical points in the map but we didnt want to)
+Moreover, it was basically almost impossible to let the robot pass in the hugely small corridor in the bottom of the map (we suppose
+that it was possible during the recording of the bag because the robot was manually controlled)
+Since the map was not be closed, it may happen that with some inflation radius or other param, the robot may exit from the 'right' map and go in the
+unknown space. We kept the map 'unclosed' since with the current config, the robot difficultly can exit from the map.
+
 For the local planning, teb has been used, because it is typically better than dwa. It check the area surrounding the robot for obstacle and it can adjust the
 global path accordingly. The inflation radius is still 0.2.
 It is computed more fequently than the global planning.
